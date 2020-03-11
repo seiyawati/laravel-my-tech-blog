@@ -43,7 +43,7 @@
           </ul>
         </section>
 
-        <a class="btn btn-xs btn-round btn-success" href="{{route('login')}}">ログイン</a>
+        <!-- <a class="btn btn-xs btn-round btn-success" href="{{route('login')}}">ログイン</a> -->
 
       </div>
     </nav><!-- /.navbar -->
