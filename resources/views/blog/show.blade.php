@@ -9,7 +9,7 @@
   
   <div class="row">
     <div class="col-lg-8">
-      <h3>・{{$post->title}}/<span class="badge badge-primary">Primary</span></h3>
+      <h3>{{$post->title}}</h3>
       <p>{{$post->publised_at}}</p>
       <hr>
       {!!$post->content!!}
