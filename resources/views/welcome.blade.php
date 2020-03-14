@@ -6,74 +6,65 @@ Seiya Blog
 
 @endsection
 
-@section('header')
-<!-- Header -->
-<header class="header text-center text-white" style="background-image:url('https://cdn.pixabay.com/photo/2017/10/27/15/12/geeks-2894621_1280.jpg')">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-md-8 mx-auto">
-
-            <h1>Seiya Blog</h1>
-            <p class="lead-2 opacity-90 mt-6">
-                このブログは日々の学習のメモとして使っています、初学者さんの参考になれば幸いです。
-            </p>
-
-          </div>
-        </div>
-
-      </div>
-</header><!-- /.header -->
-@endsection
 
 @section('content')
 <!-- Main Content -->
-<main class="main-content">
-      <div class="section bg-gray">
-        <div class="container">
-          <div class="row">
-
-
-            <div class="col-md-8 col-xl-9">
-              <div class="row gap-y">
-
-              <!--$postsが空かどうかの判断をしてくれる、あればforeach的な働きをする-->
-                @forelse($posts as $post)
-                <div class="col-md-6">
-                  <div class="card border hover-shadow-6 mb-6 d-block">
-                    <a href="{{route('blog.show',$post->id)}}"><img class="card-img-top" src="{{asset('storage/'.$post->image)}}" alt="Card image cap"></a>
-                    <div class="p-6 text-center">
-                        <p>
-                            <a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="#">
-                              {{$post->category->name}}
-                            </a>
-                        </p>
-                        <h5 class="mb-0">
-                            <a class="text-dark" href="{{route('blog.show',$post->id)}}">
-                              {{$post->title}}
-                            </a>
-                        </h5>
-                    </div>
-                  </div>
-                </div>
-                @empty
-                <p class="text-content">
-                    該当する検索結果が見つかりません。<strong>{{ request()->query('search') }}</strong>
-                </p>
-                @endforelse
-
-              </div>
-              <!--実行時に検索結果のページネーションのリンクを作るようにする-->
-              {{ $posts->appends(['search' => request()->query('search')])->links() }}
+<section>
+        <div class="row">
+            <div class="col-lg-12">
+              <h2>記事一覧/</h2>
             </div>
-
-
-            @include('partials.sidebar')
-            
-          </div>
         </div>
-      </div>
-    </main>
+      
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="bs-component">
+                  @forelse($posts as $post)
+                    <div class="card mb-3 border-primary " style="max-width: 100%;">
+                        <div class="card-header"><span class="badge badge-pill badge-primary">{{$post->category->name}}</span> / @foreach($post->tags as $tag)<span class="badge badge-pill badge-secondary">{{$tag->name}}</span> @endforeach</div>
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="{{route('blog.show',$post->id)}}" style="color:black;">{{$post->title}}</a></h4>
+                            <p class="card-text">{{$post->description}}</p>
+                        </div>
+                    </div>
+                    @empty
+                    <p class="text-content">
+                      該当する検索結果が見つかりません。<strong>{{ request()->query('search') }}</strong>
+                    </p>
+                    @endforelse
+                    <!--実行時に検索結果のページネーションのリンクを作るようにする-->
+                    {{ $posts->appends(['search' => request()->query('search')])->links() }}
+                </div>
+            </div>    
+            <div class="col-lg-4">
+                <div class="bs-component">
+                    <h4>カテゴリー</h4>
+                    <div class="card border-primary">
+                        <ul class="list-group">
+                          @foreach($categories as $category)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a href="{{route('blog.category',$category->id)}}" style="color:black">{{$category->name}}</a>
+                            <span class="badge badge-primary badge-pill">{{$category->posts->count()}}</span>
+                            </li>
+                          @endforeach  
+                        </ul>
+                    </div>
+                </br>
+                    <h4>タグ</h4>
+                    <div class="card border-primary">
+                        <ul class="list-group">
+                          @foreach($tags as $tag)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a href="{{route('blog.tag',$tag->id)}}" style="color:black">{{$tag->name}}</a>
+                            <span class="badge badge-primary badge-pill">{{$tag->posts->count()}}</span>
+                            </li>
+                          @endforeach  
+                        </ul>
+                    </div>
+                </div>    
+            </div>
+        </div>    
+    </section>
 @endsection    
 
 

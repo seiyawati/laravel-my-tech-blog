@@ -40,11 +40,13 @@
             <div class="form-group">
 
                 <label for="content">文章</label>
+                
                 <!--textareaにvalue属性はない-->
                 <!-- <textarea column="5" rows="5" class="form-control" name="content" id="content">{{isset($post) ? $post->content : ''}}</textarea> -->
                 
                 <input id="content" type="hidden" name="content" value="{{isset($post) ? $post->content : ''}}">
                 <trix-editor input="content"></trix-editor>
+                
                 
             </div>
 
@@ -131,24 +133,26 @@
 @endsection
 
 @section('script')
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
+    //日付のプラグイン 
     flatpickr('#published_at',{
         enableTime: true,
         enableSeconds: true
-    })
+    });
 
+    //タグのプラグイン 
     $(document).ready(function() {
-    $('。tags-selector').select2();
-});
+    $('.tags-selector').select2();
+    });
 
+    tinymce.init({selector:'#content'});
 </script>
 @endsection
 
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css" rel="stylesheet"></link>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endsection

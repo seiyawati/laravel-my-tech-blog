@@ -146,6 +146,6 @@ return [
     |
     */
 
-    'attributes' => ['name' => '名前','about' => '自己紹介'],
+    'attributes' => ['name' => '名前','about' => '自己紹介','email' => 'メールアドレス','body' => '内容'],
 
 ];

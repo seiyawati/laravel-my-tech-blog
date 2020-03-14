@@ -21,6 +21,14 @@ Route::get('blog/categories/{category}', [PostsController::class,'category'])->n
 
 Route::get('blog/tags/{tag}',[PostsController::class,'tag'])->name('blog.tag');
 
+Route::get('blog/profile',[PostsController::class,'profile'])->name('blog.profile');
+
+Route::get('contact','ContactsController@index')->name('contact.index');
+
+Route::post('contact/confirm','ContactsController@confirm')->name('contact.confirm');
+
+Route::post('contact/complete','ContactsController@complete')->name('contact.complete');
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function(){

@@ -70,4 +70,8 @@ class PostsController extends Controller
             'posts' => $posts,
         ]);
     }
+
+    public function profile(){
+        return view('blog.profile');
+    }
 }
