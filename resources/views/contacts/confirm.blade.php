@@ -31,7 +31,7 @@ Seiya Blog
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">お問い合わせ</div>
+                <div class="panel-heading"><p class="text-center">入力内容確認</p></div>
                 <div class="panel-body">
                 <form action="{{route('contact.complete')}}" method="POST">
                     @csrf

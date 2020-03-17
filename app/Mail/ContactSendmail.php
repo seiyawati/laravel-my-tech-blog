@@ -22,9 +22,9 @@ class ContactSendmail extends Mailable
      */
     public function __construct($inputs)
     {
-        $this->email = $inputs->email;
-        $this->email = $inputs->name;
-        $this->email = $inputs->body;
+        $this->email = $inputs['email'];
+        $this->name = $inputs['name'];
+        $this->body = $inputs['body'];
     }
 
     /**
@@ -34,6 +34,13 @@ class ContactSendmail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->from('kid960805@gmail.com')
+                    ->subject('SeiyaBlog 受付完了メール')
+                    ->view('contacts.mail')
+                    ->with([
+                        'email' => $this->email,
+                        'name' => $this->name,
+                        'body' => $this->body,
+                    ]);
     }
 }
