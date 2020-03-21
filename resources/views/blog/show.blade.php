@@ -13,7 +13,12 @@
       <p>{{$post->publised_at}}</p>
       <hr>
       {!!$post->content!!}
-    </div>
+
+      <!-- Go to www.addthis.com/dashboard to customize your tools -->
+      <div class="addthis_inline_share_toolbox"></div>
+            
+      <a href="{{route('welcome')}}" style="color:black">記事一覧へ</a>
+    </div> 
     @include('partials.sidebar')
   </div>
 

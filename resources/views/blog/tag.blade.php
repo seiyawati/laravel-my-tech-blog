@@ -2,7 +2,7 @@
 
 @section('title')
 
-Sass Blog
+Seiya Blog
 
 @endsection
 
@@ -19,7 +19,21 @@ Sass Blog
       <div class="bs-component">
         @forelse($posts as $post)
           <div class="card mb-3 border-primary " style="max-width: 100%;">
-              <div class="card-header"><span class="badge badge-pill badge-primary">{{$post->category->name}}</span> / @foreach($post->tags as $tag)<span class="badge badge-pill badge-secondary">{{$tag->name}}</span> @endforeach</div>
+              <div class="card-header">
+              <span class="badge badge-pill badge-primary">
+                {{$post->category->name}}
+              </span>
+               /
+              @foreach($post->tags as $tag)
+              <span class="badge badge-pill badge-secondary">
+                {{$tag->name}}
+              </span>
+              @endforeach
+              /
+              <span class="badge badge-pill badge-light">
+                作成日：{{$post->published_at->format('Y/m/d')}}
+              </span>
+              </div>
               <div class="card-body">
                   <h4 class="card-title"><a href="{{route('blog.show',$post->id)}}" style="color:black;">{{$post->title}}</a></h4>
                   <p class="card-text">{{$post->description}}</p>

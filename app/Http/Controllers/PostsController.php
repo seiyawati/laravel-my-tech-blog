@@ -196,7 +196,7 @@ class PostsController extends Controller
      */
     public function trashed(){
 
-        //ソフトデリート済みのモデルを含めるクエリ
+        //ソフトデリート済のみモデルを含めるクエリ
         $trashed = Post::onlyTrashed()->get();
 
         return view('posts.index',[
@@ -205,6 +205,7 @@ class PostsController extends Controller
     }
 
     public function restore($id){
+        //ソフトデリート済のモデルも含めるクエリ
         $post = Post::withTrashed()->where('id',$id)->firstOrFail();
 
         $post->restore();
