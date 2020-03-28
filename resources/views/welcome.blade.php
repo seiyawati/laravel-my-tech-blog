@@ -25,7 +25,7 @@ Seiya Blog
                         <span class="badge badge-pill badge-primary">{{$post->category->name}}</span>
                          / 
                          @foreach($post->tags as $tag)
-                         <span class="badge badge-pill badge-secondary">{{$tag->name}}</span> 
+                         <img src="" alt=""><span class="badge badge-pill badge-secondary">{{$tag->name}}</span> 
                          @endforeach
                          /
                          <span class="badge badge-pill badge-ligth">
