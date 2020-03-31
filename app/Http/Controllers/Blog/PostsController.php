@@ -41,7 +41,7 @@ class PostsController extends Controller
 
         $category = Category::find($id);
         //サーチスコープ
-        $posts = $category->posts()->searched()->simplePaginate(3);
+        $posts = $category->posts()->orderBy('published_at','desc')->searched()->simplePaginate(3);
 
         $categories = Category::all();
 
@@ -61,7 +61,7 @@ class PostsController extends Controller
         $tags = Tag::all();
         $categories = Category::all();
         //サーチスコープ
-        $posts = $tag->posts()->searched()->simplePaginate(3);
+        $posts = $tag->posts()->orderBy('published_at','desc')->searched()->simplePaginate(3);
 
         return view('blog.tag',[
             'tag' => $tag,

@@ -25,7 +25,7 @@ class WelcomeController extends Controller
         // }
 
         //スコープにより上の条件を満たした$postsを取得
-        $posts = Post::searched()->simplePaginate(4);
+        $posts = Post::orderBy('published_at','desc')->searched()->simplePaginate(4);
 
         $tags = Tag::all();
 
